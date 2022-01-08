@@ -2,6 +2,7 @@
     <head>
         <meta charset="utf-8"/>
         <link rel="stylesheet" href="../static/style.css">
+        <link rel="stylesheet" href="../static/jquery-ui-1.13.0.custom/jquery-ui.min.css">
     </head>
     <body>
         <div class="header">
@@ -15,12 +16,11 @@
                 <img src="../static/Images/gear.png">
                 <p>Main Settings</p>
             </div>
-            <img src="../static/Images/robot.png">
 
             <div class="mainProgress">
                 <div class="mainProgessBar">
                     <div class="mainLineProgress">
-                        <div class="mainLineProgressBack"></div>
+                        <div class="mainLineProgressBack" id="mainLineProgressBar"></div>
                     </div>
                     <div class="mainProgressNumber" id="mainProgressOne"><p>1</p></div>
                     <div class="mainProgressNumber" id="mainProgressTwo"><p>2</p></div>
@@ -30,14 +30,13 @@
                     <div class="mainProgressNumber" id="mainProgressSix"><p>6</p></div>
                 </div>
                 <p id="mainProgessText">
-                    Aqui você pode escrever q pica que vc quiser, e tem que testar para ver se centraliza
+                    1. At this first point you must select an image that will be used as a map.
                 </p>
             </div>
 
             <div class="mainOptions">
                 <input type="button" value="Options 1">
                 <input type="button" value="Options 2">
-                <input type="button" value="Options 3">
             </div>
         </div>
 
@@ -45,21 +44,29 @@
             <div class="mapHeader">
                 <img src="../static/Images/map.png">
                 <p>Map</p>
+                <input type="button" value="Position Map" id="btnMapZoomControl">
             </div>
 
             <div class="mapBody">
+                <div class="mapDefault">
+                    <div class="imgMap">
+                        <img class="imgMapBackImage" draggable="false"/>
+                    </div>
+                </div>
                 <div class="mapFirstStage">
-                    <img class="imgMap"/>
                     <div class="mapButtons">
                         <input class="btnMapFirst" type="button" value="Choose an Image"><br><br>
                         <input class="btnMapConfirm" type="button" value="Confirm">
                         <input id="btnChooseImage" type="file" style="display: none;" accept="image/x-png, image/gif, image/jpeg"/>
                     </div>
                 </div>
+
+                <div id="mapZommControl"> </div>
             </div>
         </div>
     </body>
 
     <script src="../static/jquery.js"></script>
     <script src="../static/animations.js"></script>
+    <script src="../static/jquery-ui-1.13.0.custom/jquery-ui.min.js"></script>
 </html>

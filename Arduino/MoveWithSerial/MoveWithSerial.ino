@@ -31,7 +31,7 @@ void loop() {
   }
   else if (StatusKart == 1){
 
-    if(setKartADistance(0.5,5)== 2){
+    if(setKartADistance(0.5,5) == 2){
 
       setKartADistance(0.5,5);
       StatusKart++;
