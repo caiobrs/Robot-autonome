@@ -13,4 +13,5 @@ def main():
         except KeyboardInterrupt:
             hedge.stop()  # stop and close serial port
             sys.exit()
+            
 main()
