@@ -7,12 +7,15 @@ def main():
     hedge.start() # start thread
     while True:
         try:
-            sleep(1)
-            # print (hedge.position()) # get last position and print
-            hedge.print_position()
-            if (hedge.distancesUpdated):
-			    hedge.print_distances()
+            sleep(0.1)
+            positions = hedge.getPositionXY()
+            print(positions)
+            file = open('data.txt','a')
+            file.write(str(positions[0])+"\t"+str(positions[1])+"\n")
+            file.close()
         except KeyboardInterrupt:
             hedge.stop()  # stop and close serial port
             sys.exit()
+            
 main()
+
