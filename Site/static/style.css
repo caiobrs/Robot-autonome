@@ -9,7 +9,9 @@ body {
     background-color: rgb(247, 247, 247);
 }
 
-/*Code Header*/
+/*---------------------------------------------------------------------------*/
+/*---------------------------------Header------------------------------------*/
+/*---------------------------------------------------------------------------*/
 
 .header {
     width: 100%;
@@ -48,7 +50,9 @@ body {
     background-color: rgb(193, 230, 255);
 }
 
-/*Code Main Controller*/
+/*---------------------------------------------------------------------------*/
+/*-------------------------------Main Seting---------------------------------*/
+/*---------------------------------------------------------------------------*/
 
 .mainController {
     width: 25%;
@@ -85,7 +89,22 @@ body {
     margin-bottom: 15px;
 }
 
-/*Progess bar*/
+.mainController .mainOptions input {
+    margin: 5px 0;
+    padding: 10px;
+    width: 80%;
+    border: 1px solid rgb(255, 1, 1);
+    border-radius: 5px;
+    background-color: rgb(255, 95, 95);
+    cursor: pointer;
+    color: white;
+    font-size: 16px;
+    transition: .2s;
+}
+
+/*---------------------------------------------------------------------------*/
+/*-------------------------------Progress Bar--------------------------------*/
+/*---------------------------------------------------------------------------*/
 
 .mainProgress {
     width: 80%;
@@ -104,36 +123,23 @@ body {
 
 .mainProgress .mainProgressNumber {
     display: inline-block;
-    width: 30px;
-    height: 30px;
+    width: 25px;
+    height: 25px;
     background-color: rgb(163, 161, 161);
     color: white;
     border-radius: 100%;
-    line-height: 30px;
+    line-height: 25px;
     text-align: center;
 }
 
 .mainProgress .mainProgressNumber:not(#mainProgressOne) {
-    margin-left: calc( (100% - 6 * 34px) / 5);
+    margin-left: calc( (100% - 6 * 29px) / 5);
 }
 
 .mainProgress .mainLineProgress .mainLineProgressBack {
     width: 0%;
     height: 100%;
     background-color: purple;
-}
-
-.mainController .mainOptions input {
-    margin: 5px 0;
-    padding: 10px;
-    width: 80%;
-    border: 1px solid rgb(255, 1, 1);
-    border-radius: 5px;
-    background-color: rgb(255, 95, 95);
-    cursor: pointer;
-    color: white;
-    font-size: 16px;
-    transition: .2s;
 }
 
 .mainProgress{
@@ -148,7 +154,19 @@ body {
     background-color: rgb(255, 151, 151);
 }
 
-/*Mapping*/
+/*First Stage Situation*/
+
+#mainProgressOne {
+    background-color: purple;
+}
+
+.mainOptions input[type = button] {
+    display: none;
+}
+
+/*---------------------------------------------------------------------------*/
+/*---------------------------------Map Body----------------------------------*/
+/*---------------------------------------------------------------------------*/
 
 .map {
     width: calc(75% - 100px);
@@ -208,6 +226,10 @@ body {
     background-color: rgba(0, 0, 0, 0.01);
 }
 
+/*---------------------------------------------------------------------------*/
+/*-------------------------------Map Default---------------------------------*/
+/*---------------------------------------------------------------------------*/
+
 .map .mapDefault {
     position: absolute;
     width: 100%;
@@ -228,7 +250,10 @@ body {
     height: 100%;
 }
 
-/*First Stage*/
+
+/*---------------------------------------------------------------------------*/
+/*-------------------------------First Step----------------------------------*/
+/*---------------------------------------------------------------------------*/
 
 .map .mapBody .mapFirstStage {
     background-color: rgba(5, 5, 5, 0.062);
@@ -276,23 +301,10 @@ body {
     background-color: rgb(23, 230, 4);
 }
 
+/*---------------------------------------------------------------------------*/
+/*-------------------------------Second Step---------------------------------*/
+/*---------------------------------------------------------------------------*/
 
-/*First Stage Situation*/
-
-#mainProgressOne {
-    background-color: purple;
-}
-
-#mainLineProgressBar {
-    width: 7%;
-}
-
-.mainOptions input[type = button] {
-    visibility: hidden;
-}
-
-
-/*Second Stage Situation*/
 #mapZommControl {
     position: absolute;
     top: 0;

@@ -1,5 +1,10 @@
 var stageMap = 1;
 
+
+//---------------------------------------------------------------------------------\\
+//----------------------------------First Step-------------------------------------\\
+//---------------------------------------------------------------------------------\\
+
 $(".mapFirstStage .btnMapFirst").click(function() {
     $("#btnChooseImage").click();
 });
@@ -21,11 +26,21 @@ $(".mapFirstStage .btnMapConfirm").click(function() {
     $(".mapFirstStage").fadeOut("slow");
 
     $("#mainLineProgressBar").effect( "size", {
-        to: { width: $("#mainLineProgressBar").parent().width() * 0.25 }
+        to: { width: $("#mainLineProgressBar").parent().width() * 0.20 }
       }, 1000 );
 
     $("#mainProgessText").fadeOut("slow", function() {
-        $("#mainProgessText").fadeIn("slow");
+
+        var btnConfirm = $("#mainOptionExample").clone();
+        btnConfirm.attr("id", "btnConfirmStepTwo");
+        btnConfirm.val("Confirm");
+        btnConfirm.appendTo(".mainController .mainOptions");
+        btnConfirm.click(btnConfirm_Click);
+
+        $("#mainProgessText").fadeIn("slow", function() {
+            btnConfirm.fadeIn("slow");
+        });
+
         $("#btnMapZoomControl").fadeIn("slow");
 
         $("#mainProgessText").html("2. At this point you should adjust the map on the side so that it " +
@@ -34,8 +49,39 @@ $(".mapFirstStage .btnMapConfirm").click(function() {
         $("#mainProgressTwo").animate({
             backgroundColor: "purple"
           });
-    })
+    });
 });
+
+//---------------------------------------------------------------------------------\\
+//----------------------------------Second Step------------------------------------\\
+//---------------------------------------------------------------------------------\\
+
+function btnConfirm_Click() {
+    $("#btnConfirmStepTwo").fadeOut("slow", function() {
+        $("#btnConfirmStepTwo").remove();
+    })
+
+    $("#mainLineProgressBar").effect( "size", {
+        to: { width: $("#mainLineProgressBar").parent().width() * 0.40 }
+      }, 1000 );
+    
+    $("#mainProgessText").fadeOut("slow", function() {
+
+        $("#btnMapZoomControl").fadeIn("slow");
+
+        $("#mainProgessText").html("3. Vamo ver ainda o q vai ser escrito");
+
+        $("#mainProgessText").fadeIn();
+
+        $("#mainProgressThree").animate({
+            backgroundColor: "purple"
+        });
+    });
+}
+
+//---------------------------------------------------------------------------------\\
+//----------------------------------Zoom Control-----------------------------------\\
+//---------------------------------------------------------------------------------\\
 
 $("#btnMapZoomControl").click(function() {
     if ($("#btnMapZoomControl").val() == "Position Map") {
