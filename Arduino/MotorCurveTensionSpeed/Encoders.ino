@@ -13,7 +13,7 @@ volatile char dir2 = 0;
 float getPosition1()
 {
   noInterrupts();
-  float temp = position1*(2*3.1415*(28.85))/(380*1000.0);
+  float temp = position1*(2*3.1415*(29))/(380*1000.0);
   interrupts();
   return temp;
 }
@@ -21,7 +21,7 @@ float getPosition1()
 float getPosition2()
 {
   noInterrupts();
-  float temp = position2*(2*3.1415*(28.85))/(380*1000.0);
+  float temp = position2*(2*3.1415*(29))/(380*1000.0);
   interrupts();
   return temp;
 }
@@ -36,7 +36,7 @@ float getSpeedMotor1(){
     return 0;
   else {
     float rot = 1000000.0/( (float)tempDur );
-    float v = rot*(2*3.1415*(28.85))/(380*1000.0);  // Number of pulses per rotation: 8; Gear Ratio : 46; Gear radius: 28.85  
+    float v = rot*(2*3.1415*(29))/(380*1000.0);  // Number of pulses per rotation: 8; Gear Ratio : 46; Gear radius: 28.85  
 
     if(tempDir>0)
       return v;
@@ -56,7 +56,7 @@ float getSpeedMotor2(){
     return 0;
   else {
     float rot = 1000000.0/( (float)tempDur );
-    float v = rot*(2*3.1415*(28.85))/(380*1000.0);  // Number of pulses per rotation: 8; Gear Ratio : 46; Gear radius: 28.85; Track thickness: 4.5   
+    float v = rot*(2*3.1415*(29))/(380*1000.0);  // Number of pulses per rotation: 8; Gear Ratio : 46; Gear radius: 28.85; Track thickness: 4.5   
     if(tempDir>0)
       return v;
     else
