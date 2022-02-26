@@ -160,8 +160,8 @@ function btnSetSecondBeacon_Click() {
 $("#mapBeaconControl").mousemove(function(e) {
     var elemBeaconToMove = $("#elemBeacon" + movingBeacon);
     
-    elemBeaconToMove.css("left", (e.pageX - $(".mapBody .imgMap").offset().left - elemBeaconToMove.width() / 2) * 100 / $(".mapBody .imgMap").width()  + "%");
-    elemBeaconToMove.css("top", (e.pageY - $(".mapBody .imgMap").offset().top - elemBeaconToMove.height() / 2) * 100 / $(".mapBody .imgMap").height()  + "%");
+    elemBeaconToMove.css("left", (e.pageX - $(".mapBody .imgMap").offset().left) * 100 / $(".mapBody .imgMap").width()  + "%");
+    elemBeaconToMove.css("top", (e.pageY - $(".mapBody .imgMap").offset().top) * 100 / $(".mapBody .imgMap").height()  + "%");
 });
 
 $("#mapBeaconControl").mousedown(function(e) {
