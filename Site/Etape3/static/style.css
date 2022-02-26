@@ -1,0 +1,353 @@
+* {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+}
+
+body {
+    background-color: rgb(247, 247, 247);
+}
+
+/*---------------------------------------------------------------------------*/
+/*---------------------------------Header------------------------------------*/
+/*---------------------------------------------------------------------------*/
+
+.header {
+    width: 100%;
+    display: inline-block;
+    background-color: rgb(34, 166, 255);
+    text-align: right;
+}
+
+.header h2 {
+    margin: 20px 0;
+    color: white;
+    float: left;
+    margin-left: 30px;
+}
+
+.header input {
+    float: right;
+    padding: 5px 10px;
+    margin: 20px 0 20px 10px;
+    width: 200px;
+    height: 30px;
+}
+
+.header img {
+    float: right;
+    height: 18px;
+    padding: 5px;
+    margin: 20px 20px 20px 0;
+    border: 1px solid rgb(151, 151, 151);
+    background-color: white;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.header img:hover {
+    background-color: rgb(193, 230, 255);
+}
+
+/*---------------------------------------------------------------------------*/
+/*-------------------------------Main Seting---------------------------------*/
+/*---------------------------------------------------------------------------*/
+
+.mainController {
+    width: 25%;
+    min-height: calc(100% - 135px);
+    background-color: white;
+    border: 1px solid rgb(209, 209, 209);
+    border-top: 5px solid rgb(255, 1, 1);
+    border-radius: 4px;
+    float: left;
+    margin: 30px 0 0 30px;
+    min-width: 200px;
+}
+
+.mainController .mainHeader {
+    width: 100%;
+    display: inline-block;
+    padding: 10px;
+}
+
+.mainController .mainHeader *{
+    float: left;
+    font-size: 20px;
+}
+
+.mainController .mainHeader img{
+    width: 30px;
+    margin-right: 10px;
+}
+
+.mainController .mainOptions {
+    text-align: center;
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+.mainController .mainOptions input {
+    margin: 5px 0;
+    padding: 10px;
+    width: 80%;
+    border: 1px solid rgb(255, 1, 1);
+    border-radius: 5px;
+    background-color: rgb(255, 95, 95);
+    cursor: pointer;
+    color: white;
+    font-size: 16px;
+    transition: .2s;
+}
+
+/*---------------------------------------------------------------------------*/
+/*-------------------------------Progress Bar--------------------------------*/
+/*---------------------------------------------------------------------------*/
+
+.mainProgress {
+    width: 80%;
+    left: 10%;
+    margin: 10px 0;
+}
+
+.mainProgress .mainLineProgress {
+    background-color: rgb(163, 161, 161);
+    position: absolute;
+    height: 3px;
+    width: 90%;
+    left: 5%;
+    top: calc(50% - 1px);
+}
+
+.mainProgress .mainProgressNumber {
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    background-color: rgb(163, 161, 161);
+    color: white;
+    border-radius: 100%;
+    line-height: 25px;
+    text-align: center;
+}
+
+.mainProgress .mainProgressNumber:not(#mainProgressOne) {
+    margin-left: calc( (100% - 6 * 29px) / 5);
+}
+
+.mainProgress .mainLineProgress .mainLineProgressBack {
+    width: 0%;
+    height: 100%;
+    background-color: purple;
+}
+
+.mainProgress{
+    text-align: center;
+}
+
+.mainProgress #mainProgessText{
+    margin: 10px 10px;
+}
+
+.mainController .mainOptions input:hover {
+    background-color: rgb(248, 117, 117);
+}
+
+/*First Stage Situation*/
+
+#mainProgressOne {
+    background-color: purple;
+}
+
+.mainOptions input[type = button] {
+    display: none;
+}
+
+/*---------------------------------------------------------------------------*/
+/*---------------------------------Map Body----------------------------------*/
+/*---------------------------------------------------------------------------*/
+
+.map {
+    width: calc(75% - 100px);
+    min-width: 600px;
+    height: calc(100% - 135px);
+    background-color: white;
+    border: 1px solid rgb(209, 209, 209);
+    border-top: 5px solid rgb(31, 255, 1);
+    border-radius: 4px;
+    float: left;
+    margin: 30px 0 0 30px;
+}
+
+.map .mapHeader {
+    width: 100%;
+    display: inline-block;
+    padding: 10px;
+}
+
+.map .mapHeader *{
+    float: left;
+    font-size: 20px;
+}
+
+.map .mapHeader img{
+    width: 30px;
+    margin-right: 10px;
+}
+
+.map .mapHeader input{
+    padding: 8px 20px;
+    border: 1px solid rgb(2, 110, 16);
+    border-radius: 5px;
+    background-color: rgb(2, 202, 29);
+    cursor: pointer;
+    color: white;
+    font-size: 16px;
+    transition: .2s;
+    float: right;
+    margin-right: 30px;
+    display: none;
+}
+
+.map .mapHeader input:hover {
+    background-color: rgb(65, 167, 79);
+}
+
+.map .mapBody {
+    overflow: hidden;
+    top: -1px;
+    position: absolute;
+    margin: 60px 20px 20px 20px;
+    width: calc(100% - 40px);
+    height: calc(100% - 80px);
+    border: 1px solid rgb(212, 212, 212);
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.01);
+}
+
+/*---------------------------------------------------------------------------*/
+/*-------------------------------Map Default---------------------------------*/
+/*---------------------------------------------------------------------------*/
+
+.map .mapDefault {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+}
+
+.map .mapBody .imgMap {
+    opacity: 60%;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+}
+
+.map .mapBody .imgMap .imgMapBackImage {
+    width: 100%;
+    height: 100%;
+}
+
+
+/*---------------------------------------------------------------------------*/
+/*-------------------------------First Step----------------------------------*/
+/*---------------------------------------------------------------------------*/
+
+.map .mapBody .mapFirstStage {
+    background-color: rgba(5, 5, 5, 0.062);
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: .2s;
+}
+
+.map .mapBody .mapFirstStage:hover {
+    background-color: rgba(0, 0, 0, 0.096);
+}
+
+.map .mapBody .mapFirstStage .mapButtons {
+    top: calc(50% - 20px);
+}
+
+.map .mapBody .mapFirstStage input {
+    font-size: 14px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: white;
+    width: 200px;
+    height: 40px;
+    cursor: pointer;
+    border: 1px solid rgb(170, 170, 170);
+    border-radius: 2px;
+    transition: .2s;
+}
+
+.map .mapBody .mapFirstStage .btnMapFirst {
+    background-color: rgb(255, 123, 123);
+}
+
+.map .mapBody .mapFirstStage .btnMapConfirm {
+    background-color: rgb(17, 201, 0);
+    display: none;
+}
+
+.map .mapBody .mapFirstStage .btnMapFirst:hover {
+    background-color: rgb(253, 144, 144);
+}
+
+.map .mapBody .mapFirstStage .btnMapConfirm:hover {
+    background-color: rgb(23, 230, 4);
+}
+
+/*---------------------------------------------------------------------------*/
+/*-------------------------------Second Step---------------------------------*/
+/*---------------------------------------------------------------------------*/
+
+#mapZommControl {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.004);
+    cursor: pointer;
+    display: none;
+}
+
+/*---------------------------------------------------------------------------*/
+/*--------------------------------Thirt Step---------------------------------*/
+/*---------------------------------------------------------------------------*/
+
+#mapBeaconControl {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.004);
+    cursor: pointer;
+    display: none;
+}
+
+.elemBeacon {
+    position: absolute;
+    z-index: 100;
+    top: -50px;
+    left: -50px;
+    height: 10%;
+    width: 10%;
+
+    display: none;
+    text-align: center;
+}
+
+.elemBeacon p {
+    position: absolute;
+    width: 100%;
+    font-weight: 1000;
+    top: -20px;
+}
+
+.elemBeacon img{
+    height: 100%;
+}
