@@ -1,7 +1,6 @@
 import serial
 from time import sleep
 
-ser = serial.Serial('/dev/ttyS0', 9600, timeout=1)
-while True:
-    ser.write(bytes("#Batata%", "utf-8"))
-    sleep(1)
+ser = serial.Serial('/dev/ttyS0', 115200, timeout=1)
+
+ser.write(bytes("#s100%", "utf-8"))
