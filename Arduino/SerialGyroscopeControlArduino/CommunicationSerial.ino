@@ -1,38 +1,79 @@
 
-char messageReceived[8];
-int indexMessage = -1;
+#define MAXCARACTER 80
+#define TIMEWAITING 50
 
-char messageToRaspberry[8];
+char messageReceived[MAXCARACTER];
+int indexMessage = -1;
+int stateMessage = 0;
+//0 - Normal
+//1 - Buffer Out
+
+char messageToRaspberry[100];
 int iSendToRaspberry = 0;
 
+int stateCommunication = 0;
+//0 - Read
+//1 - Write
+//2 - Wait TIMEWAITING ms
+
+long lastTimeWaiting;
+
 void InitSerial() {
-  Serial2.begin(115200);
+  Serial2.begin(9600);
 }
 
 void updateSerial() {
-  if (Serial2.available()) {
-    char caracter = Serial2.read();
-    
-    if (caracter == '#') {
-      indexMessage = -1;
-    }
-    else if (caracter == '%') {
-      messageReceived[indexMessage] = '\0';
-      setVariable();
+  
+  if (stateCommunication == 0) {
+    while (Serial2.available()) {
       
-      indexMessage = -2;
+      char caracter = Serial2.read();
+      
+      if (caracter == '#') {
+        indexMessage = 0;
+        stateMessage = 0;
+      }
+      else if (caracter == '%') {
+        indexMessage = -1;
+        stateCommunication = 1;
+        
+        if (stateMessage == 0) {
+          messageReceived[indexMessage] = '\0';
+          Serial.println(messageReceived);
+          setVariable();
+        }
+        
+        break;
+        
+      }
+      else if (indexMessage >= 0) {
+        
+        if (indexMessage == MAXCARACTER) {
+          stateMessage = 1;
+        }
+        else {
+          messageReceived[indexMessage] = caracter;
+          indexMessage++;
+        }
+      }
     }
-    else 
-      messageReceived[indexMessage] = caracter;
-
-    if (indexMessage == 8)
-      indexMessage = 0;
-    else 
-      indexMessage++;
   }
-  else if (iSendToRaspberry == 1 && indexMessage == -1) {
-    Serial2.print(messageToRaspberry);
-    iSendToRaspberry = 0;
+  else if (stateCommunication == 1){
+    if (iSendToRaspberry == 1000) {
+      Serial2.println(messageToRaspberry);
+      iSendToRaspberry = 0;
+    }
+    else {
+      Serial2.println("#%");
+    }
+
+    lastTimeWaiting = millis();
+    stateCommunication = 2;
+  }
+  else if (stateCommunication == 2) {
+    if (millis() - lastTimeWaiting > TIMEWAITING) {
+      stateCommunication = 0;
+    }
   }
 }
 
@@ -56,14 +97,14 @@ void setVariable(){
   }
 }
 
-void writeMessageRaspberry(char message[8]) {
+void writeMessageRaspberry(char messageRasp[8]) {
 
-  int i = 0;
+  int i;
+  iSendToRaspberry = 1;
   
-  for (i = 0; message[i] != '\0'; i++)
-    messageToRaspberry[i] = message[i];
+  for (i = 0; messageRasp[i] != '\0'; i++)
+    messageToRaspberry[i] = messageRasp[i];
 
   messageToRaspberry[i] = '\0';
   
-  iSendToRaspberry = 1;
 }

@@ -18,22 +18,26 @@ void setup() {
 
   lastTime = millis();
 
-  writeMessageRaspberry("Batata");
-
+  Serial.begin(9600);
 }
 
-int index = 0;
+int teste = 0;
 
 void loop() {
 
-    while(millis() - lastTime > DT) 
-      lastTime = millis();
+  updateSerial();
 
-    updateSerial();
+  while(millis() - lastTime < DT) {}
+  
+  lastTime = millis();
+  /*
 
-    float tensionMotor1 = updateControl(speedMotor1, getSpeedMotor1(), 1);
-    float tensionMotor2 = updateControl(speedMotor2, getSpeedMotor2(), 2);
+  updateSerial();
 
-    setMotorAVoltage1(tensionMotor1);
-    setMotorAVoltage2(tensionMotor2);
+  float tensionMotor1 = updateControl(speedMotor1, getSpeedMotor1(), 1);
+  float tensionMotor2 = updateControl(speedMotor2, getSpeedMotor2(), 2);
+
+  setMotorAVoltage1(tensionMotor1);
+  setMotorAVoltage2(tensionMotor2);
+  */
 }
