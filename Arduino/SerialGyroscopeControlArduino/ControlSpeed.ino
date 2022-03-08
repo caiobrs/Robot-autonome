@@ -16,7 +16,7 @@ float convertSpeedToTension(float speedValue) {
   return (1.039223301 + 28.83495146 * speedValue);
 }
 
-float updateControl(float desiredSpeed, float currentSpeed, int motor){
+float updateControlSpeed(float desiredSpeed, float currentSpeed, int motor){
   
   if (desiredSpeed == 0.0)
     return 0;
