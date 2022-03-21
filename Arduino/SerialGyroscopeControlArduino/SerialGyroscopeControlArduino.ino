@@ -36,14 +36,16 @@ void setup() {
 }
 
 int teste = 0;
+int indexTest = 0;
 
 void loop() {
 
   while(millis() - lastTime < DT) {}
   
   lastTime = millis();
+  indexTest++;
   
-  updateGyroscope();
+  updateGyroscope(&currentPositionAngle);
   updateSerial(&currentPositionX, &currentPositionY, &targetPositionX, &targetPositionY, &targetPositionAngle);
   updateControlPosition(&speedMotor1, &speedMotor2);
 

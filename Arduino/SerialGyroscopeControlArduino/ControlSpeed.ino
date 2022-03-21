@@ -2,7 +2,7 @@
 
 #define nMotor 2
 
-const float maxVoltage = 9.0;
+const float maxVoltage = 6.0;
 const float Kp = 0.3;
 const float Ki = 2.6;
 

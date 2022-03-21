@@ -8,17 +8,17 @@ void InitGyroscope() {
   gyro.begin();
 }
 
-void updateGyroscope() {
+void updateGyroscope(float * angle) {
   gyro.update();
 
-  currentPositionAngle = gyro.getAngleZ();
+  (*angle) = gyro.getAngleZ();
 }
 
 int i = 0;
 void updateControlPosition(float * speedMotor1, float * speedMotor2) {
 
   i++;
-  if (i % 26 != 0) {
+  if (i < 26) {
     return;
   }
   i = 0;
@@ -50,11 +50,11 @@ void updateControlPosition(float * speedMotor1, float * speedMotor2) {
   Serial.print(", ");
   Serial.println(targetAngle);
   
-  float errorTheta = positionAngle - targetAngle;
+  float errorTheta = targetAngle - positionAngle;
   double errorOne = 0;
   double errorTwo = 0;
   
-  if (sqrt(errorX * errorX + errorY * errorY) < 0.012) {
+  if (sqrt(errorX * errorX + errorY * errorY) < 0.20) {
     (*speedMotor1) = 0;
     (*speedMotor2) = 0;
     return;
@@ -73,10 +73,10 @@ void updateControlPosition(float * speedMotor1, float * speedMotor2) {
   float v[2] = {0.0, 0.0};
   float u[2] = {0.0, 0.0};
 
-  float wn = sqrt(WREF * WREF + G * VREF * VREF);
+  float wn = sqrt(WREF * WREF + Gc * VREF * VREF);
 
   float k1 = 2 * KSI * wn;
-  float k2 = G * abs(VREF);
+  float k2 = Gc * abs(VREF);
   float k3 = k1;
 
   v[0] = - k1 * errorOne;
@@ -92,6 +92,11 @@ void updateControlPosition(float * speedMotor1, float * speedMotor2) {
   //------------------------------Convert Velocity-------------------------------
   //-----------------------------------------------------------------------------
 
-  (*speedMotor1) = velocityLinear - L * velocityAngular / 2.0;
-  (*speedMotor2) = velocityLinear + L * velocityAngular / 2.0;
+  (*speedMotor1) = velocityLinear - L * velocityAngular * CORRECTIONANGULAR / 2.0;
+  (*speedMotor2) = velocityLinear + L * velocityAngular * CORRECTIONANGULAR / 2.0;
+  
+  Serial.print(", ");
+  Serial.print((*speedMotor1));
+  Serial.print(", ");
+  Serial.println((*speedMotor2));
 }
