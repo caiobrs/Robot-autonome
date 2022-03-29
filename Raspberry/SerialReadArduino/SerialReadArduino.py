@@ -2,7 +2,7 @@ import serial
 import time
 
 if __name__ == '__main__':
-    ser = serial.Serial('/dev/ttyUSB12', 9600, timeout=1)
+    ser = serial.Serial('/dev/ttyUSB0', 9600, timeout=1)
     
     while True:
         try :        
@@ -13,4 +13,4 @@ if __name__ == '__main__':
                     
                     break
         except :
-            ser = serial.Serial('/dev/ttyUSB12', 9600, timeout=1)
+            ser = serial.Serial('/dev/ttyUSB0', 9600, timeout=1)
