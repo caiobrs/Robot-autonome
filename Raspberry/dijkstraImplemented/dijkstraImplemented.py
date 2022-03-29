@@ -2,7 +2,10 @@ from dis import dis
 import math
 import numpy
 
-from numpy import mat
+import serial
+from marvelmind import MarvelmindHedge
+import sys
+import time
 
 data = {
     0: [0.0, 2.0, [1]],
@@ -79,7 +82,10 @@ def getAngle(coordinates) :
         else :
             angle = (coordinates[i + 1][1] - coordinates[i][1]) / (coordinates[i + 1][0] - coordinates[i][0])
             angle = math.atan(angle) * 360 / (2 * math.pi)
-        print(angle)
+        
+        coordinatesAngle.append((*coordinates[i], angle))
+    
+    return coordinatesAngle
 
 dist, prev = dijkstra(data, nodeBegin)
 
@@ -87,5 +93,38 @@ path = getPath(prev, nodeBegin, nodeGoal)
 
 coordinates = getCoordinates(data, path)
 
-print(coordinates)
-getAngle(coordinates)
+coordinatesAngle = getAngle(coordinates)
+
+print(coordinatesAngle)
+
+hedge = MarvelmindHedge(tty = "/dev/ttyACM0", adr=None, debug=False) # create MarvelmindHedge thread
+hedge.start() # start thread
+
+index = 0
+if __name__ == '__main__':
+    ser = serial.Serial('/dev/ttyS0', 9600, timeout=1)
+    
+    while True:
+        try :
+            ser.flushOutput()
+            time.sleep(0.02) 
+            positions = hedge.getPositionXY()
+
+            targetX = coordinatesAngle[index][0]
+            targetY = coordinatesAngle[index][1]
+            targetTheta = coordinatesAngle[index][2]
+
+            ser.write((str("#Px" + ("+" if positions[0] >= 0 else "") + str(round(positions[0] * 1000)) + "%")).encode('utf-8'))  
+            time.sleep(0.02)     
+            ser.write((str("#Py" + ("+" if positions[1] >= 0 else "") + str(round(positions[1] * 1000)) + "%")).encode('utf-8'))  
+            time.sleep(0.02)
+            ser.write((str("#Tx" + ("+" if targetX * 1000 >= 0 else "") + str(round(targetX * 1000)) + "%")).encode('utf-8'))  
+            time.sleep(0.02)     
+            ser.write((str("#Ty" + ("+" if targetY * 1000 >= 0 else "") + str(round(targetY * 1000)) + "%")).encode('utf-8'))  
+            time.sleep(0.02)
+            ser.write((str("#Tt" + ("+" if targetTheta >= 0 else "") + str(round(targetTheta)) + "%")).encode('utf-8'))  
+            time.sleep(0.02) 
+
+                
+        except :
+            ser = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
