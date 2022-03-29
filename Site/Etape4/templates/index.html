@@ -1,0 +1,85 @@
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <link rel="stylesheet" href="../static/style.css">
+        <link rel="stylesheet" href="../static/jquery-ui-1.13.0.custom/jquery-ui.min.css">
+    </head>
+    <body>
+        <div class="header">
+            <h2>Vehicle Monitoring</h2>
+            <img src="../static/Images/search.png">
+            <input type="text" name="txtIpCar" placeholder="Ip of Car to be Monitored">
+        </div>
+
+        <div class="mainController">
+            <div class="mainHeader">
+                <img src="../static/Images/gear.png">
+                <p>Main Settings</p>
+            </div>
+
+            <div class="mainProgress">
+                <div class="mainProgessBar">
+                    <div class="mainLineProgress">
+                        <div class="mainLineProgressBack" id="mainLineProgressBar"></div>
+                    </div>
+                    <div class="mainProgressNumber" id="mainProgressOne"><p>1</p></div>
+                    <div class="mainProgressNumber" id="mainProgressTwo"><p>2</p></div>
+                    <div class="mainProgressNumber" id="mainProgressThree"><p>3</p></div>
+                    <div class="mainProgressNumber" id="mainProgressFour"><p>4</p></div>
+                    <div class="mainProgressNumber" id="mainProgressFive"><p>5</p></div>
+                    <div class="mainProgressNumber" id="mainProgressSix"><p>6</p></div>
+                </div>
+                <p id="mainProgessText">
+                    1. At this first point you must select an image that will be used as a map.
+                </p>
+            </div>
+
+            <div class="mainOptions">
+                <input type="button" value="Options 1" id="mainOptionExample">
+            </div>
+        </div>
+
+        <div class="map">
+            <div class="mapHeader">
+                <img src="../static/Images/map.png">
+                <p>Map</p>
+                <input type="button" value="Move Map" id="btnMapZoomControl">
+            </div>
+
+            <div class="mapBody">
+                <div class="mapDefault">
+                    <div class="imgMap">
+                        <div class="beacondAndNodes">
+                            
+                        </div>
+                        <image class="imgMapBackImage" draggable="false"/>
+                    </div>
+                </div>
+
+                <div class="mapFirstStage">
+                    <div class="mapButtons">
+                        <input class="btnMapFirst" type="button" value="Choose an Image"><br><br>
+                        <input class="btnMapConfirm" type="button" value="Confirm">
+                        <input id="btnChooseImage" type="file" style="display: none;" accept="image/x-png, image/gif, image/jpeg"/>
+                    </div>
+                </div>
+
+                <div id="mapZommControl"> </div>
+                <div id="mapBeaconControl"> </div>
+
+                <div class="elementsAux">
+                    <div id="beaconExample" class="elemBeacon">
+                        <img src="../static/Images/backImageBeacon.png">
+                        <p>51</p>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </body>
+
+    <script src="../static/jquery.js"></script>
+    <script src="../static/animations.js"></script>
+    <script src="../static/beacons.js"></script>
+    <script src="../static/jquery-ui-1.13.0.custom/jquery-ui.min.js"></script>
+</html>

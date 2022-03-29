@@ -2,7 +2,7 @@
 
 #define nMotor 2
 
-const float maxVoltage = 9.0;
+const float maxVoltage = 6.0;
 const float Kp = 0.3;
 const float Ki = 2.6;
 
@@ -16,7 +16,7 @@ float convertSpeedToTension(float speedValue) {
   return (1.039223301 + 28.83495146 * speedValue);
 }
 
-float updateControl(float desiredSpeed, float currentSpeed, int motor){
+float updateControlSpeed(float desiredSpeed, float currentSpeed, int motor){
   
   if (desiredSpeed == 0.0)
     return 0;

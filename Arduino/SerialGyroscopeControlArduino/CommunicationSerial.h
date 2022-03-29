@@ -1,5 +1,5 @@
 
 void InitSerial();
-void updateSerial();
+void updateSerial(int * curPosX, int * curPosY, int * tarPosX, int * tarPosY, float * tarAngle);
+void setVariable(int * curPosX, int * curPosY, int * tarPosX, int * tarPosY, float * tarAngle);
 void getMessage(char * messageEmpty);
-void writeMessageRaspberry(char * message);

@@ -1,4 +1,4 @@
 
 int sign(float value);
 float convertSpeedToTension(float speedValue);
-float updateControl(float desiredSpeed, float currentSpeed, int motor);
+float updateControlSpeed(float desiredSpeed, float currentSpeed, int motor);
