@@ -1,23 +1,8 @@
 from dis import dis
 import math
-import sqlite3
+import numpy
 
 from numpy import mat
-import matplotlib.pyplot as plt
-import pandas as pd
-import networkx as nx
-
-dataWithoutObstacles = {
-    0: [0.0, 2.0, [1, 3]],
-    1: [0.0, 1.0, [0, 2, 4]],
-    2: [0.0, 0.0, [1, 5]],
-    3: [1.0, 2.0, [0, 4, 6]],
-    4: [1.0, 1.0, [1, 3, 5, 7]],
-    5: [1.0, 0.0, [2, 4, 8]],
-    6: [2.0, 2.0, [3, 7]],
-    7: [2.0, 1.0, [4, 6, 8]],
-    8: [2.0, 0.0, [5, 7]],
-}
 
 data = {
     0: [0.0, 2.0, [1]],
@@ -34,21 +19,6 @@ data = {
 marginRobot = 0.2
 nodeBegin = 0
 nodeGoal = 8
-
-def plotAllCoordinates(graph) :
-    networks = []
-    positions = {i:(graph[i][0],graph[i][1]) for i in list(graph.keys())}
-    for source in graph :
-        for goal in graph[source][2] :
-            if (goal > source) :
-                networks.append((source, goal))
-    
-    G_1 = nx.Graph()
-    G_1.add_edges_from(networks)
-
-    nx.draw(G_1, positions, with_labels = True)
-
-    plt.show()
     
 
 def calcDist(graph, node1, node2) :
@@ -99,16 +69,17 @@ def getCoordinates(graph, path) :
         coordinates.append((graph[i][0], graph[i][1]))
     return coordinates
 
-def plotGraph(posX, posY, path) :
-    plt.scatter(posX,posY)
-    plt.plot(posX,posY)
-    for i, p in enumerate(path):
-        plt.annotate(p,(posX[i]+0.02,posY[i]+0.02))
-    plt.show()
+def getAngle(coordinates) :
+    coordinatesAngle = []
 
-plotAllCoordinates(dataWithoutObstacles)
-
-plotAllCoordinates(data)
+    for i in range(len(coordinates) - 1) :
+        angle = 0.0
+        if (coordinates[i + 1][0] == coordinates[i][0]) :
+            angle = numpy.sign(coordinates[i + 1][1] - coordinates[i][1]) * 90.0
+        else :
+            angle = (coordinates[i + 1][1] - coordinates[i][1]) / (coordinates[i + 1][0] - coordinates[i][0])
+            angle = math.atan(angle) * 360 / (2 * math.pi)
+        print(angle)
 
 dist, prev = dijkstra(data, nodeBegin)
 
@@ -116,7 +87,5 @@ path = getPath(prev, nodeBegin, nodeGoal)
 
 coordinates = getCoordinates(data, path)
 
-x = [x[0] for x in coordinates]
-y = [x[1] for x in coordinates]
-
-plotGraph(x, y, path)
+print(coordinates)
+getAngle(coordinates)
